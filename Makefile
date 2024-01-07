@@ -82,7 +82,7 @@ ifeq (${OS},Windows_NT)
 	SystemRoot := $(shell echo %SystemRoot%)## avoid any env variable case variance issue
 	AWK        = gawk
 	CP         = copy /y
-	ECHO       = echo
+	ECHO       = $(if $(1),echo $(1))
 	GREP       = grep
 	MKDIR      = mkdir
 	RM         = del
@@ -105,7 +105,7 @@ else
 	EXT        =
 	AWK        = awk
 	CP         = cp
-	ECHO       = echo
+	ECHO       = $(if $(1),echo "$(1)")
 	GREP       = grep
 	MKDIR      = mkdir
 	PRINTF     = printf
@@ -192,7 +192,7 @@ endif
 release: cleandist
 	$(PYTHON) -m pip install twine wheel mypy pylint black tox nose
 	$(PYTHON) -m build
-	$(PYTHON) -m twine upload dist$(/)*.whl dist$(/)*.tar.gz
+	$(PYTHON) -m twine upload --non-interactive -r testpypi dist/*
 
 .PHONY: cleandist
 cleandist:
