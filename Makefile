@@ -190,8 +190,8 @@ endif
 
 .PHONY: release
 release: cleandist
-	$(PYTHON) -m pip install twine wheel mypy pylint black tox nosetests
-	$(PYTHON) setup.py sdist bdist_wheel
+	$(PYTHON) -m pip install twine wheel mypy pylint black tox nose
+	$(PYTHON) -m build
 	$(PYTHON) -m twine upload dist$(/)*.whl dist$(/)*.tar.gz
 
 .PHONY: cleandist
@@ -225,4 +225,4 @@ docs:
 
 .PHONY: typecheck
 typecheck:
-	$(PYTHON) -m mypy -p fs --config setup.cfg
+	$(PYTHON) -m mypy -p fs --config pyproject.toml

@@ -1,5 +1,9 @@
 .DS_Store
 
+.venv/
+.pytest_cache/
+.mypy_cache/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -97,4 +101,3 @@ ENV/
 .mypy_cache
 
 .vscode
-

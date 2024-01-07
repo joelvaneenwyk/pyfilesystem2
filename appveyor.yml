@@ -23,7 +23,7 @@ install:
   - "%PYTHON%\\python.exe -m pip install -U pip wheel setuptools"
   - "%PYTHON%\\python.exe -m pip install pytest"
   - "%PYTHON%\\python.exe -m pip install -r tests/requirements.txt"
-  - "%PYTHON%\\python.exe setup.py install"
+  - "%PYTHON%\\python.exe -m pip install ."
 
 build: off
 
