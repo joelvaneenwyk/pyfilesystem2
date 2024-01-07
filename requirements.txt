@@ -1,5 +1,5 @@
 coverage[toml]
-tox
+tox>=4.11.0
 pytest>=6.0.0
-wheel
-ruff
+wheel>=0.42.0
+ruff>=0.1.11
