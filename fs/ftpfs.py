@@ -805,7 +805,7 @@ class FTPFS(FS):
                     try:
                         self.ftp.retrlines(
                             str("MLSD ") + _encode(_path, self.ftp.encoding),
-                            lambda l: lines.append(_decode(l, self.ftp.encoding)),
+                            lambda line: lines.append(_decode(line, self.ftp.encoding)),
                         )
                     except error_perm:
                         if not self.getinfo(path).is_dir:

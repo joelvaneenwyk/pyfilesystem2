@@ -400,7 +400,7 @@ class ReadTarFS(FS):
         # type: (Text) -> List[Text]
         _path = relpath(self.validatepath(path))
 
-        if not self.gettype(path) is ResourceType.directory:
+        if self.gettype(path) is not ResourceType.directory:
             raise errors.DirectoryExpected(path)
 
         children = (
