@@ -127,7 +127,6 @@ class TestRegistry(unittest.TestCase):
             opener.open_fs("unknown://")
 
     def test_entry_point_load_error(self):
-
         entry_point = mock.MagicMock()
         entry_point.load.side_effect = ValueError("some error")
 

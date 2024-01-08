@@ -24,4 +24,3 @@ for paths in hashes.values():
         for path in paths:
             print(path)
         print()
-

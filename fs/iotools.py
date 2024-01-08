@@ -157,7 +157,7 @@ def make_stream(
     errors=None,  # type: Optional[Text]
     newline="",  # type: Optional[Text]
     line_buffering=False,  # type: bool
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> IO
     """Take a Python 2.x binary file and return an IO Stream."""

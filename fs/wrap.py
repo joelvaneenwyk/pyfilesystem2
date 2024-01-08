@@ -279,7 +279,7 @@ class WrapReadOnly(WrapFS[_F], typing.Generic[_F]):
         errors=None,  # type: Optional[Text]
         newline="",  # type: Text
         line_buffering=False,  # type: bool
-        **options  # type: Any
+        **options,  # type: Any
     ):
         # type: (...) -> IO
         self.check()
@@ -293,7 +293,7 @@ class WrapReadOnly(WrapFS[_F], typing.Generic[_F]):
             errors=errors,
             newline=newline,
             line_buffering=line_buffering,
-            **options
+            **options,
         )
 
     def writebytes(self, path, contents):

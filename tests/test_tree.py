@@ -23,7 +23,6 @@ class TestInfo(unittest.TestCase):
         self.fs.makedirs("/deep/deep1/deep2/deep3/deep4/deep5/deep6")
 
     def test_tree(self):
-
         output_file = io.StringIO()
 
         tree.render(self.fs, file=output_file)
@@ -32,7 +31,6 @@ class TestInfo(unittest.TestCase):
         self.assertEqual(output_file.getvalue(), expected)
 
     def test_tree_encoding(self):
-
         output_file = io.StringIO()
 
         tree.render(self.fs, file=output_file, with_color=True)
@@ -43,7 +41,6 @@ class TestInfo(unittest.TestCase):
         self.assertEqual(output_file.getvalue(), expected)
 
     def test_tree_bytes_no_dirs_first(self):
-
         output_file = io.StringIO()
 
         tree.render(self.fs, file=output_file, dirs_first=False)

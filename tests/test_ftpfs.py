@@ -284,7 +284,6 @@ class TestFTPFS(FSTestCases, unittest.TestCase):
         ftp_fs.close()
 
     def test_create(self):
-
         directory = join("home", self.user, "test", "directory")
         base = "ftp://user:1234@{}:{}/foo".format(self.server.host, self.server.port)
         url = "{}/{}".format(base, directory)

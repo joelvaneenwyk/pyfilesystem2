@@ -14,7 +14,6 @@ if platform.system() != "Windows":
 
     @unittest.skipIf(platform.system() == "Darwin", "Bad unicode not possible on OSX")
     class TestEncoding(unittest.TestCase):
-
         TEST_FILENAME = b"foo\xb1bar"
         # fsdecode throws error on Windows
         TEST_FILENAME_UNICODE = fs.fsdecode(TEST_FILENAME)

@@ -383,7 +383,7 @@ class MultiFS(FS):
         encoding=None,  # type: Optional[Text]
         errors=None,  # type: Optional[Text]
         newline="",  # type: Text
-        **kwargs  # type: Any
+        **kwargs,  # type: Any
     ):
         # type: (...) -> IO
         self.check()
@@ -398,7 +398,7 @@ class MultiFS(FS):
             encoding=encoding,
             errors=errors,
             newline=newline,
-            **kwargs
+            **kwargs,
         )
 
     def upload(self, path, file, chunk_size=None, **options):

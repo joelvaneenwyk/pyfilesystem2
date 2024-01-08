@@ -1057,7 +1057,6 @@ class FSTestCases(object):
         self.assertTrue(self.fs.isclosed())
 
     def test_remove(self):
-
         self.fs.writebytes("foo1", b"test1")
         self.fs.writebytes("foo2", b"test2")
         self.fs.writebytes("foo3", b"test3")
@@ -1087,7 +1086,6 @@ class FSTestCases(object):
             self.fs.remove("foo/bar/egg/test.txt")
 
     def test_removedir(self):
-
         # Test removing root
         with self.assertRaises(errors.RemoveRootError):
             self.fs.removedir("/")

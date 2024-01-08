@@ -126,7 +126,7 @@ def _load_tests(loader, tests, ignore):
     # recursively traverse all library submodules and load tests from them
     packages = [None, fs]
     for pkg in iter(packages.pop, None):
-        for (_, subpkgname, subispkg) in pkgutil.walk_packages(pkg.__path__):
+        for _, subpkgname, subispkg in pkgutil.walk_packages(pkg.__path__):
             # import the submodule and add it to the tests
             module = importlib.import_module(".".join([pkg.__name__, subpkgname]))
 

@@ -84,9 +84,7 @@ def _new_name(method, old_name):
         Note:
             .. deprecated:: 2.2.0
                 Please use `~{}`
-""".format(
-        method.__name__
-    )
+""".format(method.__name__)
     if getattr(_method, "__doc__", None) is not None:
         _method.__doc__ += deprecated_msg
 
@@ -222,7 +220,7 @@ class FS(object):
         path,  # type: Text
         mode="r",  # type: Text
         buffering=-1,  # type: int
-        **options  # type: Any
+        **options,  # type: Any
     ):
         # type: (...) -> BinaryIO
         """Open a binary file-like object.
@@ -1211,7 +1209,7 @@ class FS(object):
         encoding=None,  # type: Optional[Text]
         errors=None,  # type: Optional[Text]
         newline="",  # type: Text
-        **options  # type: Any
+        **options,  # type: Any
     ):
         # type: (...) -> IO
         """Open a file.
@@ -1253,7 +1251,7 @@ class FS(object):
             encoding=encoding or "utf-8",
             errors=errors,
             newline=newline,
-            **options
+            **options,
         )
         return io_stream
 

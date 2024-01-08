@@ -420,7 +420,6 @@ class OSFS(FS):
         return _src_path, _dst_path
 
     if sys.version_info[:2] < (3, 8) and sendfile is not None:
-
         _sendfile_error_codes = {
             errno.EIO,
             errno.EINVAL,
@@ -633,7 +632,7 @@ class OSFS(FS):
         errors=None,  # type: Optional[Text]
         newline="",  # type: Text
         line_buffering=False,  # type: bool
-        **options  # type: Any
+        **options,  # type: Any
     ):
         # type: (...) -> IO
         _mode = Mode(mode)
@@ -654,7 +653,7 @@ class OSFS(FS):
                 encoding=None if _mode.binary else _encoding,
                 errors=errors,
                 newline=None if _mode.binary else newline,
-                **options
+                **options,
             )
 
     def setinfo(self, path, info):

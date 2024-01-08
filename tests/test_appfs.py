@@ -15,7 +15,6 @@ from fs import appfs
 
 
 class _TestAppFS(fs.test.FSTestCases):
-
     AppFS = None
 
     @classmethod

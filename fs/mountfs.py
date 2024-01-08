@@ -280,7 +280,7 @@ class MountFS(FS):
         encoding=None,  # type: Optional[Text]
         errors=None,  # type: Optional[Text]
         newline="",  # type: Text
-        **options  # type: Any
+        **options,  # type: Any
     ):
         # type: (...) -> IO
         validate_open_mode(mode)
@@ -293,7 +293,7 @@ class MountFS(FS):
             encoding=encoding,
             errors=errors,
             newline=newline,
-            **options
+            **options,
         )
 
     def upload(self, path, file, chunk_size=None, **options):

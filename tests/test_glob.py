@@ -104,17 +104,21 @@ class TestGlob(unittest.TestCase):
         self.assertEqual(sorted(self.fs.listdir("/")), [])
 
     translate_test_cases = [
-            ("foo.py", ["foo.py"], ["Foo.py", "foo_py", "foo", ".py"]),
-            ("foo?py", ["foo.py", "fooapy"], ["foo/py", "foopy", "fopy"]),
-            ("bar/foo.py", ["bar/foo.py"], []),
-            ("bar?foo.py", ["barafoo.py"], ["bar/foo.py"]),
-            ("???.py", ["foo.py", "bar.py", "FOO.py"], [".py", "foo.PY"]),
-            ("bar/*.py", ["bar/.py", "bar/foo.py"], ["bar/foo"]),
-            ("bar/foo*.py", ["bar/foo.py", "bar/foobaz.py"], ["bar/foo", "bar/.py"]),
-            ("*/[bar]/foo.py", ["/b/foo.py", "x/a/foo.py", "/r/foo.py"], ["b/foo.py", "/bar/foo.py"]),
-            ("[!bar]/foo.py", ["x/foo.py"], ["//foo.py"]),
-            ("[.py", ["[.py"], [".py", "."]),
-        ]
+        ("foo.py", ["foo.py"], ["Foo.py", "foo_py", "foo", ".py"]),
+        ("foo?py", ["foo.py", "fooapy"], ["foo/py", "foopy", "fopy"]),
+        ("bar/foo.py", ["bar/foo.py"], []),
+        ("bar?foo.py", ["barafoo.py"], ["bar/foo.py"]),
+        ("???.py", ["foo.py", "bar.py", "FOO.py"], [".py", "foo.PY"]),
+        ("bar/*.py", ["bar/.py", "bar/foo.py"], ["bar/foo"]),
+        ("bar/foo*.py", ["bar/foo.py", "bar/foobaz.py"], ["bar/foo", "bar/.py"]),
+        (
+            "*/[bar]/foo.py",
+            ["/b/foo.py", "x/a/foo.py", "/r/foo.py"],
+            ["b/foo.py", "/bar/foo.py"],
+        ),
+        ("[!bar]/foo.py", ["x/foo.py"], ["//foo.py"]),
+        ("[.py", ["[.py"], [".py", "."]),
+    ]
 
     @parameterized.expand(translate_test_cases)
     def test_translate(self, glob_pattern, expected_matches, expected_not_matches):
@@ -125,7 +129,9 @@ class TestGlob(unittest.TestCase):
             self.assertFalse(re.match(translated, m))
 
     @parameterized.expand(translate_test_cases)
-    def test_translate_glob_simple(self, glob_pattern, expected_matches, expected_not_matches):
+    def test_translate_glob_simple(
+        self, glob_pattern, expected_matches, expected_not_matches
+    ):
         levels, translated = glob._translate_glob(glob_pattern)
         self.assertEqual(levels, glob_pattern.count("/") + 1)
         for m in expected_matches:

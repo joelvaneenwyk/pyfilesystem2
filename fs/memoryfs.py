@@ -596,7 +596,6 @@ class MemoryFS(FS):
         _path = self.validatepath(path)
 
         with self._lock:
-
             if _path == "/":
                 self.root.clear()
                 return
