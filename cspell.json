@@ -1,0 +1,33 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "appfs",
+        "codeformat",
+        "codestyle",
+        "docstrings",
+        "docstyle",
+        "fscompat",
+        "ftpfs",
+        "McGugan",
+        "memoryfs",
+        "Miras",
+        "mypy",
+        "osfs",
+        "pypa",
+        "pypi",
+        "pypy",
+        "readtext",
+        "sdist",
+        "setuptools",
+        "tarfs",
+        "tempfs",
+        "typecheck",
+        "typechecked",
+        "zipfs"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
