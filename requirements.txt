@@ -3,3 +3,16 @@ tox>=4.11.0
 pytest>=6.0.0
 wheel>=0.42.0
 ruff>=0.1.11
+types-six
+isort
+appdirs>=1.4.3
+setuptools
+six>=1.10
+enum34>=1.1.6      ;  python_version < '3.4'
+typing>=3.6        ;  python_version < '3.6'
+backports.os>=0.1  ;  python_version < '3.0'
+
+# the bare requirements for building docs
+sphinx>=7.0.0
+sphinx-rtd-theme>=2.0.0
+recommonmark>=0.7.1
