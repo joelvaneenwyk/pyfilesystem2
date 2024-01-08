@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 
 import io
 import os
-import six
 import tarfile
 import tempfile
 import unittest
+
+import six
 
 from fs import tarfs
 from fs.compress import write_tar
@@ -21,7 +22,7 @@ from .test_archives import ArchiveTestCases
 try:
     from pytest import mark
 except ImportError:
-    from . import mark
+    from tests import mark
 
 
 class TestWriteReadTarFS(unittest.TestCase):
