@@ -89,16 +89,15 @@ warn_return_any = false
 module = ["fs.test"]
 disallow_untyped_defs = false
 
-[tool.flake8]
-extend-ignore = "E203,E402,W503"
-max-line-length = "88"
-per-file-ignores = """
-fs/__init__.py:F401
-fs/*/__init__.py:F401
-tests/*:E501
-fs/opener/*:F811
-fs/_fscompat.py:F401
-fs/_pathcompat.py:C401"""
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-function-docstring",
+    "consider-using-f-string",
+    "missing-module-docstring",
+]
 
 [tool.isort]
 default_section = "THIRDPARTY"
@@ -132,14 +131,22 @@ markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]
 # --- Project configuration -------------------------------------------------
 
 [tool.ruff]
-ignore = ["E402"]
+ignore = ["E402", "F401"]
 line-length = 88
-select = ["C4", "E", "F", "W"]
+select = ["C4", "E", "F", "W", "Q"]
 
 [tool.ruff.per-file-ignores]
-"fs/opener/*" = ["F811"]
+"fs/opener/*" = ["F811", "F401"]
 "fs/_fscompat.py" = ["F401"]
 "fs/__init__.py" = ["F401"]
 "fs/_pathcompat.py" = ["C401"]
 "fs/*/__init__.py" = ["F401"]
 "tests/*" = ["E501"]
+
+[tool.ruff.format]
+# Prefer single quotes over double quotes
+quote-style = "double"
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
