@@ -5,6 +5,7 @@
 .mypy_cache/
 fs-*/
 .ruff_cache/
+.tox/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -101,5 +102,3 @@ ENV/
 
 # MyPy cache
 .mypy_cache
-
-.vscode
