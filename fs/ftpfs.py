@@ -3,8 +3,6 @@
 
 from __future__ import print_function, unicode_literals
 
-import typing
-
 import array
 import calendar
 import datetime
@@ -12,6 +10,7 @@ import io
 import itertools
 import socket
 import threading
+import typing
 from collections import OrderedDict
 from contextlib import contextmanager
 from ftplib import FTP
@@ -20,9 +19,9 @@ try:
     from ftplib import FTP_TLS
 except ImportError as err:
     FTP_TLS = err  # type: ignore
+from ftplib import error_perm, error_temp
 from typing import cast
 
-from ftplib import error_perm, error_temp
 from six import PY2, raise_from, text_type
 
 from . import _ftp_parse as ftp_parse
@@ -37,6 +36,8 @@ from .path import abspath, basename, dirname, normpath, split
 from .time import epoch_to_datetime
 
 if typing.TYPE_CHECKING:
+    import ftplib
+    import mmap
     from typing import (
         Any,
         BinaryIO,
@@ -53,9 +54,6 @@ if typing.TYPE_CHECKING:
         Tuple,
         Union,
     )
-
-    import ftplib
-    import mmap
 
     from .base import _OpendirFactory
     from .info import RawInfo
@@ -805,7 +803,7 @@ class FTPFS(FS):
                     try:
                         self.ftp.retrlines(
                             str("MLSD ") + _encode(_path, self.ftp.encoding),
-                            lambda l: lines.append(_decode(l, self.ftp.encoding)),
+                            lambda line: lines.append(_decode(line, self.ftp.encoding)),
                         )
                     except error_perm:
                         if not self.getinfo(path).is_dir:

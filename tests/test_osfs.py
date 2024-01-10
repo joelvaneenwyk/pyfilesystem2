@@ -23,7 +23,7 @@ except ImportError:
     import mock
 
 
-class TestOSFS(FSTestCases, unittest.TestCase):
+class TestOSFS(FSTestCases):
     """Test OSFS implementation."""
 
     @classmethod

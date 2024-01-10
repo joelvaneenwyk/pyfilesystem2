@@ -498,9 +498,7 @@ class Walker(object):
         _check_file = self._check_file
         depth = _calculate_depth(path)
 
-        stack = [
-            (path, _scan(fs, path, namespaces=namespaces), None)
-        ]  # type: List[Tuple[Text, Iterator[Info], Optional[Tuple[Text, Info]]]]
+        stack = [(path, _scan(fs, path, namespaces=namespaces), None)]  # type: List[Tuple[Text, Iterator[Info], Optional[Tuple[Text, Info]]]]
 
         push = stack.append
 
@@ -575,7 +573,7 @@ class BoundWalker(typing.Generic[_F]):
         self,
         path="/",  # type: Text
         namespaces=None,  # type: Optional[Collection[Text]]
-        **kwargs  # type: Any
+        **kwargs,  # type: Any
     ):
         # type: (...) -> Iterator[Step]
         """Walk the directory structure of a filesystem.
@@ -718,7 +716,7 @@ class BoundWalker(typing.Generic[_F]):
         self,
         path="/",  # type: Text
         namespaces=None,  # type: Optional[Collection[Text]]
-        **kwargs  # type: Any
+        **kwargs,  # type: Any
     ):
         # type: (...) -> Iterator[Tuple[Text, Info]]
         """Walk a filesystem, yielding path and `Info` of resources.

@@ -35,7 +35,6 @@ class TestIOTools(unittest.TestCase):
                 self.assertIsInstance(text, six.text_type)
 
     def test_readinto(self):
-
         self.fs.writebytes("bytes.bin", b"foofoobarbar")
 
         with self.fs.openbin("bytes.bin") as bin_file:
@@ -59,7 +58,6 @@ class TestIOTools(unittest.TestCase):
                 self.assertEqual(f.readline(1), b"f")
 
     def test_readinto1(self):
-
         self.fs.writebytes("bytes.bin", b"foofoobarbar")
 
         with self.fs.openbin("bytes.bin") as bin_file:
@@ -108,7 +106,6 @@ class TestIOTools(unittest.TestCase):
         self.assertEqual(self.fs.readbytes("foo"), b"foobarbaz")
 
     def test_seekable(self):
-
         f = io.BytesIO(b"HelloWorld")
         raw_wrapper = iotools.RawWrapper(f)
         self.assertTrue(raw_wrapper.seekable())

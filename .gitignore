@@ -1,5 +1,12 @@
 .DS_Store
 
+.venv/
+.pytest_cache/
+.mypy_cache/
+fs-*/
+.ruff_cache/
+.tox/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -95,6 +102,3 @@ ENV/
 
 # MyPy cache
 .mypy_cache
-
-.vscode
-

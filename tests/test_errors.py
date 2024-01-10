@@ -48,7 +48,6 @@ def _multiprocessing_test_task(err, *args):
 
 class TestCreateFailed(unittest.TestCase):
     def test_catch_all(self):
-
         errors = (ZeroDivisionError, ValueError, CreateFailed)
 
         @CreateFailed.catch_all

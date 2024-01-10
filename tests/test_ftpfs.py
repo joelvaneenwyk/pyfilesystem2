@@ -1,6 +1,11 @@
 # coding: utf-8
 from __future__ import absolute_import, print_function, unicode_literals
 
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="pyftpdlib")
+warnings.filterwarnings("ignore", category=RuntimeWarning, module="pyftpdlib")
+
 import calendar
 import datetime
 import os
@@ -11,13 +16,9 @@ import tempfile
 import time
 import unittest
 import uuid
-
-try:
-    from unittest import mock
-except ImportError:
-    import mock
-
 from ftplib import error_perm, error_temp
+from unittest import mock
+
 from pyftpdlib.authorizers import DummyAuthorizer
 from six import BytesIO, text_type
 
@@ -31,7 +32,7 @@ from fs.test import FSTestCases
 try:
     from pytest import mark
 except ImportError:
-    from . import mark
+    from tests import mark
 
 # Prevent socket timeouts from slowing tests too much
 socket.setdefaulttimeout(1)
@@ -284,7 +285,6 @@ class TestFTPFS(FSTestCases, unittest.TestCase):
         ftp_fs.close()
 
     def test_create(self):
-
         directory = join("home", self.user, "test", "directory")
         base = "ftp://user:1234@{}:{}/foo".format(self.server.host, self.server.port)
         url = "{}/{}".format(base, directory)
@@ -313,7 +313,7 @@ class TestFTPFS(FSTestCases, unittest.TestCase):
     def test_upload_connection(self):
         with mock.patch.object(self.fs, "_manage_ftp") as _manage_ftp:
             self.fs.upload("foo", BytesIO(b"hello"))
-        self.assertEqual(self.fs.gettext("foo"), "hello")
+        self.assertEqual(self.fs.readtext("foo"), "hello")
         _manage_ftp.assert_not_called()
 
 

@@ -1,12 +1,12 @@
 from __future__ import unicode_literals
 
-import sys
-
 import os
-import pkg_resources
 import shutil
+import sys
 import tempfile
 import unittest
+
+import pkg_resources
 
 from fs import open_fs, opener
 from fs.appfs import UserDataFS
@@ -19,7 +19,7 @@ from fs.osfs import OSFS
 try:
     from unittest import mock
 except ImportError:
-    import mock
+    from tests import mock
 
 
 class TestParse(unittest.TestCase):
@@ -127,7 +127,6 @@ class TestRegistry(unittest.TestCase):
             opener.open_fs("unknown://")
 
     def test_entry_point_load_error(self):
-
         entry_point = mock.MagicMock()
         entry_point.load.side_effect = ValueError("some error")
 

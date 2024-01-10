@@ -37,6 +37,7 @@ except ImportError:
             return path_repr
         else:
             raise TypeError(
-                "expected {}.__fspath__() to return string type "
-                "not {}".format(path_type.__name__, type(path_repr).__name__)
+                "expected {}.__fspath__() to return string type " "not {}".format(
+                    path_type.__name__, type(path_repr).__name__
+                )
             )

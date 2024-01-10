@@ -48,9 +48,7 @@ def copy_file_data(src_file, dst_file, chunk_size=None):
     read = src_file.read
     write = dst_file.write
     # The 'or None' is so that it works with binary and text files
-    for chunk in iter(
-        lambda: read(_chunk_size) or None, None
-    ):  # type: Optional[Union[bytes, str]]
+    for chunk in iter(lambda: read(_chunk_size) or None, None):  # type: Optional[Union[bytes, str]]
         write(chunk)
 
 

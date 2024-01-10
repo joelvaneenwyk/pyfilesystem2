@@ -488,7 +488,7 @@ def isparent(path1, path2):
         bits1.pop()
     if len(bits1) > len(bits2):
         return False
-    for (bit1, bit2) in zip(bits1, bits2):
+    for bit1, bit2 in zip(bits1, bits2):
         if bit1 != bit2:
             return False
     return True

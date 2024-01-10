@@ -32,9 +32,7 @@ if typing.TYPE_CHECKING:
     from .base import FS
 
 
-_PATTERN_CACHE = LRUCache(
-    1000
-)  # type: LRUCache[Tuple[Text, bool], Tuple[Optional[int], Pattern]]
+_PATTERN_CACHE = LRUCache(1000)  # type: LRUCache[Tuple[Text, bool], Tuple[Optional[int], Pattern]]
 
 
 def _split_pattern_by_sep(pattern):

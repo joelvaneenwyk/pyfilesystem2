@@ -67,14 +67,14 @@ def _my_fs(module):
         my_fs.touch("file.txt")
     elif module == "fs.info":
         my_fs.touch("foo.tar.gz")
-        my_fs.settext("foo.py", "print('Hello, world!')")
+        my_fs.writetext("foo.py", "print('Hello, world!')")
         my_fs.makedir("bar")
     elif module in {"fs.walk", "fs.glob"}:
         my_fs.makedir("dir1")
         my_fs.makedir("dir2")
-        my_fs.settext("foo.py", "print('Hello, world!')")
+        my_fs.writetext("foo.py", "print('Hello, world!')")
         my_fs.touch("foo.pyc")
-        my_fs.settext("bar.py", "print('ok')\n\n# this is a comment\n")
+        my_fs.writetext("bar.py", "print('ok')\n\n# this is a comment\n")
         my_fs.touch("bar.pyc")
     return my_fs
 
@@ -126,7 +126,7 @@ def _load_tests(loader, tests, ignore):
     # recursively traverse all library submodules and load tests from them
     packages = [None, fs]
     for pkg in iter(packages.pop, None):
-        for (_, subpkgname, subispkg) in pkgutil.walk_packages(pkg.__path__):
+        for _, subpkgname, subispkg in pkgutil.walk_packages(pkg.__path__):
             # import the submodule and add it to the tests
             module = importlib.import_module(".".join([pkg.__name__, subpkgname]))
 

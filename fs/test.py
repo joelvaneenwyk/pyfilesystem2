@@ -15,12 +15,14 @@ import six
 import time
 import unittest
 import warnings
+from abc import abstractmethod
 from datetime import datetime
 from six import text_type
 
 import fs.copy
 import fs.move
 from fs import ResourceType, Seek, errors, glob, walk
+from fs.base import FS
 from fs.opener import open_fs
 from fs.subfs import ClosingSubFS, SubFS
 
@@ -34,6 +36,7 @@ try:
 except ImportError:
     from ._tzcompat import timezone  # type: ignore
 
+from typing import TYPE_CHECKING, Generic, Protocol, TypeVar
 
 UNICODE_TEXT = """
 
@@ -243,7 +246,9 @@ Box drawing alignment tests:                                          █
 """
 
 
-class FSTestCases(object):
+
+
+class FSTestCases(unittest.TestCase):
     """Basic FS tests."""
 
     data1 = b"foo" * 256 * 1024
@@ -251,11 +256,11 @@ class FSTestCases(object):
     data3 = b"baz" * 3 * 256 * 1024
     data4 = b"egg" * 7 * 256 * 1024
 
-    def make_fs(self):
+    @abstractmethod
+    def make_fs(self) -> FS:
         """Return an FS instance."""
-        raise NotImplementedError("implement me")
 
-    def destroy_fs(self, fs):
+    def destroy_fs(self, file_system: FS):
         """Destroy a FS instance.
 
         Arguments:
@@ -263,7 +268,7 @@ class FSTestCases(object):
                 by `~fs.test.FSTestCases.make_fs`.
 
         """
-        fs.close()
+        file_system.close()
 
     def setUp(self):
         self.fs = self.make_fs()
@@ -352,7 +357,7 @@ class FSTestCases(object):
 
     def test_appendbytes(self):
         with self.assertRaises(TypeError):
-            self.fs.appendbytes("foo", "bar")
+            self.fs.appendbytes("foo", "bar")  # type: ignore[reportGeneralTypeIssues]
         self.fs.appendbytes("foo", b"bar")
         self.assert_bytes("foo", b"bar")
         self.fs.appendbytes("foo", b"baz")
@@ -360,7 +365,7 @@ class FSTestCases(object):
 
     def test_appendtext(self):
         with self.assertRaises(TypeError):
-            self.fs.appendtext("foo", b"bar")
+            self.fs.appendtext("foo", b"bar")  # type: ignore[reportGeneralTypeIssues]
         self.fs.appendtext("foo", "bar")
         self.assert_text("foo", "bar")
         self.fs.appendtext("foo", "baz")
@@ -771,7 +776,7 @@ class FSTestCases(object):
         lines = os.linesep.join(["Line 1", "Line 2", "Line 3"])
         self.fs.writetext("iter.txt", lines)
         with self.fs.open("iter.txt") as f:
-            for actual, expected in zip(f, lines.splitlines(1)):
+            for actual, expected in zip(f, lines.splitlines(keepends=True)):
                 self.assertEqual(actual, expected)
 
     def test_openbin_rw(self):
@@ -1057,7 +1062,6 @@ class FSTestCases(object):
         self.assertTrue(self.fs.isclosed())
 
     def test_remove(self):
-
         self.fs.writebytes("foo1", b"test1")
         self.fs.writebytes("foo2", b"test2")
         self.fs.writebytes("foo3", b"test3")
@@ -1087,7 +1091,6 @@ class FSTestCases(object):
             self.fs.remove("foo/bar/egg/test.txt")
 
     def test_removedir(self):
-
         # Test removing root
         with self.assertRaises(errors.RemoveRootError):
             self.fs.removedir("/")
