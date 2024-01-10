@@ -5,6 +5,8 @@
     "dictionaries": [],
     "words": [
         "appfs",
+        "autoclass",
+        "autoexception",
         "codeformat",
         "codestyle",
         "docstrings",
@@ -14,14 +16,19 @@
         "McGugan",
         "memoryfs",
         "Miras",
+        "mountfs",
         "mypy",
+        "norecursedirs",
         "osfs",
+        "pycache",
+        "pyftpdlib",
         "pypa",
         "pypi",
         "pypy",
         "readtext",
         "sdist",
         "setuptools",
+        "subfs",
         "tarfs",
         "tempfs",
         "typecheck",
@@ -29,5 +36,15 @@
         "zipfs"
     ],
     "ignoreWords": [],
-    "import": []
+    "import": [],
+    "enableFiletypes": [
+        "!java",
+        "ignore",
+        "ini",
+        "makefile",
+        "pip-requirements",
+        "powershell",
+        "shellcheckrc",
+        "toml"
+    ]
 }

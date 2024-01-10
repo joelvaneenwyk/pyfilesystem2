@@ -9,12 +9,19 @@
             "source.fixAll": true
         },
         "editor.formatOnType": true,
-        "editor.wordBasedSuggestions": "allDocuments"
+        "editor.wordBasedSuggestions": "allDocuments",
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "modificationsIfAvailable"
     },
     "python.terminal.activateEnvInCurrentTerminal": true,
     "pythonTestExplorer.outputs.showOutputsOnRun": true,
     "python.createEnvironment.contentButton": "show",
     "python.missingPackage.severity": "Warning",
     "python.testing.pytestEnabled": true,
-    "pythonTestExplorer.testFramework": "pytest"
+    "pythonTestExplorer.testFramework": "pytest",
+    "mypy-type-checker.severity": {
+        "error": "Error",
+        "note": "Warning"
+    }
 }

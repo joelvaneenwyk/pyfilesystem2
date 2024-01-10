@@ -1,6 +1,11 @@
 # coding: utf-8
 from __future__ import absolute_import, print_function, unicode_literals
 
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="pyftpdlib")
+warnings.filterwarnings("ignore", category=RuntimeWarning, module="pyftpdlib")
+
 import calendar
 import datetime
 import os
@@ -12,6 +17,7 @@ import time
 import unittest
 import uuid
 from ftplib import error_perm, error_temp
+from unittest import mock
 
 from pyftpdlib.authorizers import DummyAuthorizer
 from six import BytesIO, text_type

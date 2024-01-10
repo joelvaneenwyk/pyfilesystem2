@@ -124,22 +124,14 @@ setlocal EnableExtensions
     if errorlevel 1 goto:$MainError
     call :Command scoop update pipx
     if errorlevel 1 goto:$MainError
-    call :Command pipx install poetry
+
+    call :Command pipx run pip install --no-warn-script-location --upgrade pip setuptools build wheel pytest-github-actions-annotate-failures
     if errorlevel 1 goto:$MainError
 
-    call :Command pipx run poetry run pip install --no-warn-script-location --upgrade pip setuptools build wheel pytest-github-actions-annotate-failures
+    call :Command pipx run pip install . --no-interaction --with dev
     if errorlevel 1 goto:$MainError
 
-    call :Command pipx run poetry install --no-interaction --with dev
-    if errorlevel 1 goto:$MainError
-
-    call :Command pipx run poetry lock
-    if errorlevel 1 goto:$MainError
-
-    call :Command pipx run poetry run ruff .
-    if errorlevel 1 goto:$MainError
-
-    call :Command pipx run poetry shell
+    call :Command pipx run ruff .
     if errorlevel 1 goto:$MainError
 
     :$MainError
